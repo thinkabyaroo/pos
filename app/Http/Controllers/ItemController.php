@@ -58,7 +58,7 @@ class ItemController extends Controller
         $item->photo = $newName;
         $item->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('status',"Added Item Success");
     }
 
     /**
@@ -117,7 +117,7 @@ class ItemController extends Controller
 
         $item->update();
 
-
+//        return redirect()->to(url()->previous()."#nav-list");
 
         return redirect()->route('item.index')->with('status','Post Updated');
     }
