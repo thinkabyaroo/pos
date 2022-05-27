@@ -59,9 +59,9 @@
 
 <div class="container-fluid ">
     <div class="row">
-        <div class="col-12 col-md-3 col-xl-2 vh-100 bg-white shadow px-0">
+        <div class="col-12 col-md-3 col-lg-2 vh-100 bg-white shadow px-0">
             <div class="list-group px-0">
-                <a href="#" class="list-group-item list-group-item-action py-3">POS System</a>
+                <a href="{{route('pos.index')}}" class="list-group-item list-group-item-action py-3">POS System</a>
                 <a href="{{route('category.index')}}" class="list-group-item list-group-item-action py-3 d-flex justify-content-between align-items-start">
                     <div class="me-auto">
                         <div class="fw-bold">

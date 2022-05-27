@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
@@ -130,7 +131,7 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-//        Storage::delete('public/item/'.$item->photo);
+        Storage::delete('public/item/'.$item->photo);
 
         $item->delete();
         return redirect()->route('item.index')->with('status',"Deleted successful");
