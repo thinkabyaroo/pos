@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Item;
 use App\Models\pos;
 use App\Http\Requests\StoreposRequest;
@@ -16,8 +17,12 @@ class PosController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
-        return view('pos.index',['items'=>$items]);
+        $items = Item::latest('id')->paginate(20);
+        $categories = Category::all();
+        return view('pos.index',[
+            'items'=>$items,
+            'categories'=>$categories,
+            ]);
     }
 
     /**

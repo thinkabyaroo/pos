@@ -11292,3 +11292,13 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.side-nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 3rem;
+  display: block !important;
+  height: calc(100vh - 10rem);
+  padding-left: 0.25rem;
+  margin-left: -0.25rem;
+  overflow-y: auto;
+}

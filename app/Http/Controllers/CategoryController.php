@@ -45,7 +45,7 @@ class CategoryController extends Controller
 
         ]);
 
-        $name=ucfirst($request->name);
+        $name=ucwords($request->name);
         $category=new Category();
         $category->name=$name;
         $category->user_id=Auth::id();
@@ -91,7 +91,7 @@ class CategoryController extends Controller
 
         ]);
 
-        $category->name=$request->name;
+        $category->name=ucfirst($request->name);
 
         $category->update();
         return redirect()->route('category.create')->with('status','success');

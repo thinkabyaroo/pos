@@ -32,8 +32,16 @@
             height: 25%;
             padding: 5px;
         }
-        .ticket{
+        .voucher-col{
+            position: fixed;
+            right: 0;
+        }
+        .voucher{
             height: 92vh;
+        }
+        .voucher ul{
+            max-height: 68vh;
+            overflow: auto;
         }
         .productModalImg{
             width: 100%;
@@ -60,24 +68,29 @@
     </style>
 @endsection
 @section('content')
-    <div class=" col-12 col-md-9 col-lg-7 py-5 ps-3">
+    <div class=" col-12 col-md-9 col-lg-7 mt-4 pb-5 ps-3">
         <div class="mb-4">
-            <ul class="nav nav-pills">
-                <li class="nav-item rounded-pill px-1 border me-1">
-                    <a class="nav-link " aria-current="page" href="#">Coffee</a>
+            <ul class="nav nav-pills w-100 p-1" >
+                @foreach($categories as $category)
+                <li class="nav-item rounded-pill px-1 border me-1 mb-1">
+                    <a class="nav-link " aria-current="page" href="#">{{$category->name}}</a>
                 </li>
-                <li class="nav-item rounded-pill px-1 border me-1">
-                    <a class="nav-link " href="#">Drink</a>
-                </li>
-                <li class="nav-item rounded-pill px-1 border me-1">
-                    <a class="nav-link " href="#">Donut</a>
-                </li>
-                <li class="nav-item rounded-pill px-1 border me-1">
-                    <a class="nav-link " href="#">Bread</a>
-                </li>
-                <li class="nav-item rounded-pill px-1 border me-1">
-                    <a class="nav-link " href="#">Cake</a>
-                </li>
+                @endforeach
+{{--                <li class="nav-item rounded-pill px-1 border me-1">--}}
+{{--                    <a class="nav-link " href="#">Drink</a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item rounded-pill px-1 border me-1">--}}
+{{--                    <a class="nav-link " href="#">Donut</a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item rounded-pill px-1 border me-1">--}}
+{{--                    <a class="nav-link " href="#">Bread</a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item rounded-pill px-1 border me-1">--}}
+{{--                    <a class="nav-link " href="#">Cake</a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item rounded-pill px-1 border me-1">--}}
+{{--                    <a class="nav-link " href="#">Fast Food</a>--}}
+{{--                </li>--}}
             </ul>
         </div>
 
@@ -97,9 +110,9 @@
                                     @endif
 {{--                                    <img src="https://www.w3schools.com/w3images/notebook.jpg" class="pos-card-img-top" alt="">--}}
                                     <div class="content d-flex justify-content-between align-items-center">
-                                        <p class="h4 mb-0 product-name">{{ucwords($item->name)}}</p>
+                                        <p class="h4 mb-0 product-name text-truncate">{{$item->name}}</p>
                                         <p class="fw-bold product-price mb-0">${{$item->price}}</p>
-                                        <p>{{$item->category_id}}</p>
+{{--                                        <p>{{$item->category_id}}</p>--}}
                                     </div>
                                 </div>
                             </div>
@@ -114,12 +127,15 @@
                             </div>
                     </div>
                 </div>
+                <div class="my-3">
+                    {{$items->links()}}
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="col-12 col-md-12  col-lg-3 px-0 d-md-none d-lg-block">
-        <div class="bg-white  w-100 shadow-sm ticket" style="position: relative">
+    <div class="col-12 col-md-12  col-lg-3 px-0 d-md-none d-lg-block voucher-col">
+        <div class="bg-white  w-100 shadow-sm voucher" style="position: relative">
                     <h4 class="d-flex justify-content-between align-items-center mb-2 py-3">
                         <span class="text-primary">Your Voucher</span>
                         <span class="badge bg-primary rounded-pill list-count">0</span>
