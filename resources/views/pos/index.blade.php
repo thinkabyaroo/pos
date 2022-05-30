@@ -1,6 +1,10 @@
 @extends('master')
 @section('head')
     <style>
+        .filter-btn:active,.filter-active{
+            background: #d9d9fb;
+        }
+
         .pos-card{
             /* position: relative; */
 
@@ -69,28 +73,26 @@
 @endsection
 @section('content')
     <div class=" col-12 col-md-9 col-lg-7 mt-4 pb-5 ps-3">
+        <form action="{{route('pos.index')}}" method="get">
+            <div class="me-2">
+                <div class="input-group">
+                    <input type="text"  name="search" value="{{request('search')}}" class="form-control border border-primary" placeholder="Search" required>
+                    <button class="btn btn-outline-primary" type="submit">
+                        <i class="fa-solid fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
         <div class="mb-4">
             <ul class="nav nav-pills w-100 p-1" >
+                <li class="nav-item filter-btn rounded-pill px-1 border me-1 mb-1 {{! request()->has('category') ? 'filter-active':''}}">
+                    <a class="nav-link filter-active" aria-current="page" href="{{route('pos.index')}}">All</a>
+                </li>
                 @foreach($categories as $category)
-                <li class="nav-item rounded-pill px-1 border me-1 mb-1">
-                    <a class="nav-link " aria-current="page" href="#">{{$category->name}}</a>
+                <li class="nav-item filter-btn rounded-pill px-1 border me-1 mb-1 {{request()->has('category') && request('category')==$category->id ? 'filter-active':''}}">
+                    <a class="nav-link " aria-current="page" href="{{route('pos.index',['category'=>$category->id])}}">{{$category->name}}</a>
                 </li>
                 @endforeach
-{{--                <li class="nav-item rounded-pill px-1 border me-1">--}}
-{{--                    <a class="nav-link " href="#">Drink</a>--}}
-{{--                </li>--}}
-{{--                <li class="nav-item rounded-pill px-1 border me-1">--}}
-{{--                    <a class="nav-link " href="#">Donut</a>--}}
-{{--                </li>--}}
-{{--                <li class="nav-item rounded-pill px-1 border me-1">--}}
-{{--                    <a class="nav-link " href="#">Bread</a>--}}
-{{--                </li>--}}
-{{--                <li class="nav-item rounded-pill px-1 border me-1">--}}
-{{--                    <a class="nav-link " href="#">Cake</a>--}}
-{{--                </li>--}}
-{{--                <li class="nav-item rounded-pill px-1 border me-1">--}}
-{{--                    <a class="nav-link " href="#">Fast Food</a>--}}
-{{--                </li>--}}
             </ul>
         </div>
 
@@ -112,7 +114,7 @@
                                     <div class="content d-flex justify-content-between align-items-center">
                                         <p class="h4 mb-0 product-name text-truncate">{{$item->name}}</p>
                                         <p class="fw-bold product-price mb-0">${{$item->price}}</p>
-{{--                                        <p>{{$item->category_id}}</p>--}}
+                                        <p class="small">{{$item->category->name}}</p>
                                     </div>
                                 </div>
                             </div>
