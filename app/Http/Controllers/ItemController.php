@@ -16,7 +16,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::latest("id")->paginate(10);
+        $items = Item::latest('id')->paginate(7);
         return view("item.index",["items"=>$items]);
     }
 
@@ -52,7 +52,7 @@ class ItemController extends Controller
         $request->file('photo')->storeAs("public/item",$newName);
 
         $item = new Item();
-        $item->name = $request->name;
+        $item->name = ucwords($request->name);
         $item->category_id = $request->category_id;
         $item->price = $request->price;
         $item->description = $request->description;
@@ -103,7 +103,7 @@ class ItemController extends Controller
         ]);
 //        return $request;
 
-        $item->name = $request->name;
+        $item->name = ucwords($request->name);
         $item->category_id = $request->category_id;
         $item->price = $request->price;
         $item->description = $request->description;

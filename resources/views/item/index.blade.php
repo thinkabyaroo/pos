@@ -3,7 +3,7 @@
 
             <div class="col-12 col-md-9 col-lg-10 py-5 ps-3">
 
-                <div class="mb-4">
+                <div class="mb-4 d-flex justify-content-between align-items-center" >
                     <ul class="nav nav-pills">
                         <li class="nav-item">
                             <a class="nav-link {{route('item.index') == request()->url()? 'active':''}}" aria-current="page" href="{{route('item.index')}}">Item List</a>
@@ -12,6 +12,10 @@
                             <a class="nav-link {{route('item.create') == request()->url()? 'active':''}}" href="{{route('item.create')}}">Add Item</a>
                         </li>
                     </ul>
+                    <span class="p-2 border rounded-2 text-center">
+                        Total Item :
+                        {{count(\App\Models\Item::all())}}
+                    </span>
                 </div>
 
             @if(session('status'))
@@ -22,8 +26,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
+                <h3>Item Lists</h3>
                 <div class="py-3">
-                        <h3>Item Lists</h3>
                         <table class="table table-hover table-borderless align-middle">
                             <thead class="table-primary">
                             <tr>
@@ -77,7 +81,9 @@
                             </tbody>
                         </table>
                     </div>
-
+                <div class="">
+                    {{$items->links()}}
+                </div>
             </div>
 
 @endsection

@@ -22,9 +22,14 @@ class DatabaseSeeder extends Seeder
             "email"=>"thinkabyaroo@gmail.com",
             "password"=>Hash::make('password')
         ]);
+        User::create([
+            "name"=>"WinWinMaw",
+            "email"=>"wwm@gmail.com",
+            "password"=>Hash::make('password')
+        ]);
 
-         \App\Models\User::factory(10)->create();
-        Category::factory(20)->create();
+        \App\Models\User::factory(10)->create();
+        Category::factory(5)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
